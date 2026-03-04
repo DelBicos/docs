@@ -37,5 +37,6 @@ Este repositório armazena a documentação técnica e o mapeamento de requisito
 | **RNF05** |  **Performance Mídia** |Compressão automática de imagens antes do upload. |
 | **RNF06** |  **Validação Robusta** | Uso de **Zod/Yup** (Front) e **Express Validator** (Back). |
 | **RNF07** |  **Cloud Sync** | Latência de sincronização com a nuvem inferior a 2 segundos. |
+| **RNF08** |  **Acessibilidade** | A interface deve possuir suporte a intérprete virtual de Libras e manter um contraste no modo escuro. |
 
 ---
