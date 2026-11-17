@@ -8,21 +8,20 @@
 
 <p align="center">
   <a href="#-about">About</a> |
+  <a href="#-arquitetura">Arquitetura</a> |
+  <a href="#-documentação">Documentação</a> |
   <a href="#-entregas-de-sprints">Sprints</a> |
-  <a href="#-backlogs">Backlogs</a> |
-  <a href="#-user-stories">User Stories</a> |
-  <a href="#-functional-requirements">Functional Requirements</a> |
-  <a href="#-prototype">Prototype</a> |
-  <a href="#️-tecnologies">Tecnologies</a> |
-  <a href="#-team">Team</a> |
-  <a href="#-project-structure">Project Structure</a> |
-  <a href="#️-installation">Installation</a> |
-  <a href="https://github.com/fershibli/DelBicosBackend">Backend Project</a>
+  <a href="#-prototype">Protótipo</a> |
+  <a href="#️-tecnologies">Tecnologias</a> |
+  <a href="#-team">Time</a> |
+  <a href="#-requisitos-funcionais-rf">Requisitos</a> |
+  <a href="https://github.com/fershibli/DelBicosV2">App</a> |
+  <a href="https://github.com/DelBicos/backend">API</a>
 </p>
 
 # 💻 About
 
-DelBicos - Delivery de Bicos, é um projeto que propõe conectar clientes e trabalhadores informais na mesma vizinhança, garantindo demanda local, qualidade e segurança e será projetado através de um website.
+DelBicos (Delivery de Bicos) conecta clientes e trabalhadores informais da mesma vizinhança. O produto em execução é um aplicativo Expo (React Native) para Android, iOS e web, com uma API em Node.
 
 Profissionais informais, de diversas vertentes, têm muita dificuldade para adquirir clientes na sua região de atuação, muitas vezes tendo que se deslocar por longas distâncias para chegar aos seus clientes, quando não o inverso. Enquanto que na outra ponta, clientes que se mudaram há pouco tempo para a região encontram muita dificuldade e insegurança ao procurar por profissionais confiáveis para realizar tarefas em suas residências.
 
@@ -37,26 +36,45 @@ Ao solucionar esse problema, notaria-se também os seguintes benefícios para a 
 
 > > 📌 **Status:** $\color{Apricot}{Em\ desenvolvimento}$
 
-🔗 **Documentações das disciplinas do projeto**
+## 🏗️ Arquitetura
 
-- <a href="assets/DelBicos - Projeto Interdisciplinar IV.pdf"> Projeto Interdisciplinar IV - 4 Semestre </a><p>
-- <a href="assets/DelBicos - Projeto Interdisciplinar IV - UX.pdf"> UX Design - 4 Semestre </a><p>
+Dois repositórios de código e este, de documentação.
 
-<details>
-  <summary> Documentações das disciplinas do projeto</summary>
-  <p>
-<a href="assets/DelBicos - Delivery de Bicos I.pdf"> Delivery de Bicos I - 1 Semestre </a><p>
-<a href="assets/DelBicos - Delivery de Bicos II.pdf"> Delivery de Bicos II - 2 Semestre </a><p>
-<a href="assets/DelBicos - Projeto Interdisciplinar III - Gestão Ágil.pdf"> Gestão Ágil de Projetos de Software - 3 Semestre </a><p>
-<a href="assets/Projeto_IHC-DelBicos-Projeto_Interdisciplinar_III.pdf"> Interação Humano-Computador - 3 Semestre </a><p>
-</p>
-</details>
+| Parte | Repositório | O que é |
+| --- | --- | --- |
+| App | [DelBicosV2](https://github.com/fershibli/DelBicosV2) | Expo 54, React Native e TypeScript. Telas em `public` e `private` (cliente, profissional, admin e chat). Só as stores Zustand chamam a API. |
+| API | [DelBicos/backend](https://github.com/DelBicos/backend) | Express e TypeScript. Rotas entregam o pedido ao controller. Regra de negócio e integração externa ficam em `services`. Postgres (Sequelize) guarda o negócio. MongoDB guarda chat e log de login. |
+| NLP | pasta `nlp-service` da API | Classificador em Python (TF-IDF + SVM) e busca semântica. Não é um modelo generativo. |
+| Tempo real | API + app | Socket.io no mesmo servidor HTTP da API. Pagamentos no Stripe. Arquivos no Azure Blob Storage. |
+
+O app não é fronteira de segurança: a API repete a validação e protege a regra de negócio. O detalhe das camadas está em `docs/architecture.md` de cada repositório de código.
+
+## 📄 Documentação
+
+Os arquivos deste repositório, por semestre:
+
+| Semestre | Arquivos |
+| --- | --- |
+| 1 | [Entrega](semester1/DOC_ENTREGA.pdf) |
+| 2 | [Entrega](semester2/DOC_ENTREGA.pdf) · [Apresentação](semester2/APRESENTATION.pptx) |
+| 3 | [Gestão ágil](semester3/DOC_GESTAO_AGIL.docx) · [IHC](semester3/DOC_IHC.docx) · [Técnicas de programação](semester3/DOC_TECNICAS_PROGRAMACAO.docx) · [Avaliação heurística](semester3/DOC_AVAL_HEURISTICA.docx) |
+| 4 | [Projeto](semester4/DOC_PROJETO.docx) · [UX](semester4/DOC_UX.docx) · [Apresentação](semester4/APRESENTATION.pptx) |
+| 5 | [Apresentação](semester5/APRESENTATION.pptx) |
+| 6 | [Usuário](semester6/DOC_USUARIO.pdf) · [Técnica](semester6/DOC_TECNICA.pdf) · [Projeto](semester6/DOC_PROJETO.pdf) · [Desenvolvimento](semester6/DOC_DESENVOLVIMENTO.pdf) |
+
+Os requisitos também estão em [RF_RNF.pdf](RF_RNF.pdf).
+
+```
+Delbicos-Docs
+├── semester1 … semester6   # entregas das disciplinas
+├── assets                  # logo e imagens de sprint
+├── RF_RNF.pdf
+└── README.md
+```
 
 <br>
 
 ## 🏁 Entregas de Sprints
-
-<image src="assets/Entrega_de_sprints.png" alt="Entregas de Sprints do projeto DelBicos" width="80%">
 
 | Sprint |    Período    | Entregas                                                                                                                                                                                                                                                                              |    Status    |
 | :----: | :-----------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------: |
@@ -76,7 +94,7 @@ Ao solucionar esse problema, notaria-se também os seguintes benefícios para a 
 
 ## 🎨 Prototype
 
-O protótipo do DelBicos no Figma serve como uma demonstração visual interativa das funcionalidades centrais do sistema. Ele apresenta a página inicial, a navegação para pesquisa de profissionais, os fluxos de cadastro e login de usuários, além das interações de agendamento de serviços e pagamentos. Embora a página do administrador esteja desenvolvida, as áreas dedicadas aos perfis de cliente e profissional ainda estão em fase de finalização.
+O protótipo no Figma cobre a entrada, a busca de profissionais, o cadastro, o login, o agendamento e o pagamento. O produto em execução é o aplicativo e a API da seção de arquitetura, não um site ainda por fazer.
 
 🔗 👉 [![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/proto/1xZfYHmDwbr9aaqoh5ddxN/DelBicosV2?node-id=1364-969&t=tZpzceJg13szkrPk-1)
 
@@ -84,22 +102,19 @@ O protótipo do DelBicos no Figma serve como uma demonstração visual interativ
 
 ## 🛠️ Tecnologies
 
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![Javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white) ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![Swift](https://img.shields.io/badge/swift-F54A2A?style=for-the-badge&logo=swift&logoColor=white) ![Objective-C](https://img.shields.io/badge/OBJECTIVE--C-%233A95E3.svg?style=for-the-badge&logo=apple&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Kotlin](https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white) ![Express](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white) ![MaterialUI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white) ![Node](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white) ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Zustand](https://img.shields.io/badge/Zustand-007ACC?style=for-the-badge&logo=React&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white) ![Penpot](https://img.shields.io/badge/Penpot-000000?style=for-the-badge&logo=penpot&logoColor=white) ![Gimp](https://img.shields.io/badge/gimp-5C5543?style=for-the-badge&logo=gimp&logoColor=white) ![Inkscape](https://img.shields.io/badge/Inkscape-000000?style=for-the-badge&logo=Inkscape&logoColor=white) ![Vscode](https://img.shields.io/badge/Vscode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white) ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white) ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
+App: Expo, React Native, TypeScript e Zustand. API: Node, Express, Sequelize, PostgreSQL e MongoDB. Em volta: Stripe, Socket.io, Azure Blob Storage, Docker e o serviço de NLP em Python.
+
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white) ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Node](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Express](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
 <br>
 
 ## 👥 Team
 
-|                        Nome                        | Função                      |
-| :------------------------------------------------: | --------------------------- |
-|  [Fernando Chibli](https://github.com/fershibli)   | _Product Owner & FullStack_ |
-| [Douglas Wenzel](https://github.com/douglaswenzel) | _Scrum Master & FullStack_  |
-|    [Eduardo Kamo](https://github.com/edukamoz)     | _Desenvolvedor FullStack_   |
-|  [Gustavo Ferreira](https://github.com/Gspedine)   | _Desenvolvedor FullStack_   |
-|  [Iago Rossan](https://github.com/IagoYuriRossan)  | _Desenvolvedor FullStack_   |
-|   [Isabel Maito](https://github.com/isabelmaito)   | _Desenvolvedora FullStack_  |
-|    [Lucas Consani](https://github.com/konsanii)    | _Desenvolvedor FullStack_   |
-|    [Fernando Ribeiro](https://github.com/FernandoRSantos)    | _Desenvolvedor FullStack_   |
+|                        Nome                        | Função                                 |
+| :------------------------------------------------: | -------------------------------------- |
+|  [Fernando Chibli](https://github.com/fershibli)   | _CTO e Desenvolvedor FullStack_        |
+| [Douglas Wenzel](https://github.com/douglaswenzel) | _Scrum Master e Desenvolvedor FullStack_ |
+|   [Isabel Maito](https://github.com/isabelmaito)   | _Designer e Desenvolvedora FullStack_  |
 
 <br>
 
@@ -125,11 +140,11 @@ O protótipo do DelBicos no Figma serve como uma demonstração visual interativ
 | ID | Atributo | Premissa Técnica |
 | :---: | :--- | :--- |
 | **RNF01** |  **Responsividade** | Interface adaptável para telas de 5" até 11" (Tablets). |
-| **RNF02** |  **Persistência Local** | Uso de **SQLite** para armazenamento offline de rascunhos e agenda. |
+| **RNF02** |  **Persistência Local** | Rascunho e sessão no aparelho com Async Storage (Zustand persist). |
 | **RNF03** |  **Sincronização** | Upload automático via API assim que a conexão for restabelecida.  |
 | **RNF04** |  **Segurança JWT** | Controle de acesso (Roles) nos endpoints do Backend. |
 | **RNF05** |  **Performance Mídia** |Compressão automática de imagens antes do upload. |
-| **RNF06** |  **Validação Robusta** | Uso de **Zod/Yup** (Front) e **Express Validator** (Back). |
+| **RNF06** |  **Validação Robusta** | Formulário no app com react-hook-form. A API valida de novo; o cliente não é fronteira de segurança. |
 | **RNF07** |  **Cloud Sync** | Latência de sincronização com a nuvem inferior a 2 segundos. |
 | **RNF08** |  **Acessibilidade** | A interface deve possuir suporte a intérprete virtual de Libras e manter um contraste no modo escuro. |
 
